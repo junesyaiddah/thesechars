@@ -1,4 +1,6 @@
-thesechars.js
+thesechars
 =============
 
-A faster way to restrict char types on inputs using jQuery
+A faster way to restrict characters in inputs
+
+[View the demo](https://guimadaleno.github.io/demos/thesechars)
