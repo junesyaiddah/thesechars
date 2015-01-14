@@ -20,16 +20,27 @@
 
 				<div class="panel panel-default">
 					<div class="panel-body" id="example">
-						<div class="form-group">
-							<input type="text" class="form-control numbers-only" placeholder="Try to type letters here">
-						</div>
-						<div class="form-group" style="margin-bottom: 0;">
-							<input type="text" class="form-control letters-only" placeholder="Try to type numbers here">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group" style="margin-bottom: 0;">
+									<input type="text" class="form-control numbers-only" placeholder="Only numbers">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group" style="margin-bottom: 0;">
+									<input type="text" class="form-control float-numbers-only" placeholder="Only float numbers">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group" style="margin-bottom: 0;">
+									<input type="text" class="form-control letters-only" placeholder="Only letters">
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 
-				<h4>And the best part. You can still use keys like Control/Command+A or arrows :)</h4>
+				<h4>And the best part. You can still use keys like Control/Command+A or arrows.</h4>
 				<h5>Would you like to customize it? <a href="http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes" target="_blank">This might be useful</a>.</h5>
 
 			</div>
@@ -38,7 +49,6 @@
 	</body>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="thesechars.js"></script>
 	<script>
 
 		$(document).ready(function()
@@ -71,6 +81,33 @@
 				}
 			});
 
+			$(".float-numbers-only").on('keydown', function(e)
+			{
+				if 
+				(
+					e.keyCode == 46 || e.keyCode == 8 || e.keyCode == 9 || e.keyCode == 27 || e.keyCode == 13 || 
+					(e.keyCode == 65 && e.ctrlKey === true) || 
+					(e.keyCode == 67 && e.ctrlKey === true) || 
+					(e.keyCode == 88 && e.ctrlKey === true) || 
+					(e.keyCode == 86 && e.ctrlKey === true) || 
+					(e.keyCode == 65 && e.metaKey === true) || 
+					(e.keyCode == 67 && e.metaKey === true) || 
+					(e.keyCode == 88 && e.metaKey === true) || 
+					(e.keyCode == 86 && e.metaKey === true) || 
+					(e.keyCode >= 35 && e.keyCode <= 39)
+				) 
+				{
+					return;
+				}
+				else
+			 	{
+					if (e.shiftKey || (e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105 ) && (e.keyCode != 190)) 
+					{
+						e.preventDefault(); 
+					}   	
+				}
+			});
+
 			$('.letters-only').on('keydown', function (e) 
 			{ 
 			    if (e.keyCode >= 48 && e.keyCode <= 57)
@@ -93,7 +130,7 @@
 				    ) || (e.keyCode >= 65 && e.keyCode <= 90)
 			    )
 			    {
-			    	return
+			    	return;
 			    }
 			    else
 			    {
